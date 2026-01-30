@@ -1,32 +1,35 @@
-@extends('landing.layouts.app')
 
-@section('content')
+
+<?php $__env->startSection('content'); ?>
 <!-- Hero Section -->
 <section class="relative bg-gradient-to-r from-blue-600 to-blue-800 text-white">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
         <div class="grid md:grid-cols-2 gap-12 items-center">
             <div>
                 <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-                    {{ $landing->hero_title ?? 'Sistem Manajemen Koperasi Terintegrasi' }}
+                    <?php echo e($landing->hero_title ?? 'Sistem Manajemen Koperasi Terintegrasi'); ?>
+
                 </h1>
                 <p class="text-xl text-red-100 mb-8">
-                    {{ $landing->hero_subtitle ?? 'Platform modern untuk mengelola koperasi Anda dengan mudah, cepat, dan efisien' }}
+                    <?php echo e($landing->hero_subtitle ?? 'Platform modern untuk mengelola koperasi Anda dengan mudah, cepat, dan efisien'); ?>
+
                 </p>
                 <div class="flex flex-wrap gap-4">
-                    <a href="{{ route('landing.register') }}" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
-                        {{ $landing->hero_cta_text ?? 'Daftar Sekarang' }}
+                    <a href="<?php echo e(route('landing.register')); ?>" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+                        <?php echo e($landing->hero_cta_text ?? 'Daftar Sekarang'); ?>
+
                     </a>
-                    <a href="{{ route('landing.features') }}" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition">
+                    <a href="<?php echo e(route('landing.features')); ?>" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition">
                         Lihat Fitur
                     </a>
                 </div>
             </div>
             <div class="hidden md:block">
-                @if(isset($landing) && $landing->hero_image)
-                    <img src="{{ Storage::url($landing->hero_image) }}" alt="Hero" class="rounded-lg shadow-2xl">
-                @else
+                <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if(isset($landing) && $landing->hero_image): ?>
+                    <img src="<?php echo e(Storage::url($landing->hero_image)); ?>" alt="Hero" class="rounded-lg shadow-2xl">
+                <?php else: ?>
                     <img src="https://via.placeholder.com/600x400/3B82F6/FFFFFF?text=Koperasi+Management" alt="Hero" class="rounded-lg shadow-2xl">
-                @endif
+                <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
             </div>
         </div>
     </div>
@@ -44,15 +47,15 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
             <div class="bg-white p-8 rounded-lg shadow-sm">
-                <div class="text-4xl font-bold text-blue-600 mb-2">{{ $landing->stat_koperasi ?? 0 }}+</div>
+                <div class="text-4xl font-bold text-blue-600 mb-2"><?php echo e($landing->stat_koperasi ?? 0); ?>+</div>
                 <div class="text-gray-600">Koperasi Terdaftar</div>
             </div>
             <div class="bg-white p-8 rounded-lg shadow-sm">
-                <div class="text-4xl font-bold text-blue-600 mb-2">{{ number_format($landing->stat_anggota ?? 0) }}+</div>
+                <div class="text-4xl font-bold text-blue-600 mb-2"><?php echo e(number_format($landing->stat_anggota ?? 0)); ?>+</div>
                 <div class="text-gray-600">Anggota Aktif</div>
             </div>
             <div class="bg-white p-8 rounded-lg shadow-sm">
-                <div class="text-4xl font-bold text-blue-600 mb-2">Rp {{ number_format($landing->stat_transaksi ?? 0) }}</div>
+                <div class="text-4xl font-bold text-blue-600 mb-2">Rp <?php echo e(number_format($landing->stat_transaksi ?? 0)); ?></div>
                 <div class="text-gray-600">Total Transaksi</div>
             </div>
         </div>
@@ -64,10 +67,12 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-                {{ $landing->features_title ?? 'Fitur Unggulan' }}
+                <?php echo e($landing->features_title ?? 'Fitur Unggulan'); ?>
+
             </h2>
             <p class="text-xl text-gray-600 max-w-2xl mx-auto">
-                {{ $landing->features_subtitle ?? 'Solusi lengkap untuk kebutuhan manajemen koperasi modern' }}
+                <?php echo e($landing->features_subtitle ?? 'Solusi lengkap untuk kebutuhan manajemen koperasi modern'); ?>
+
             </p>
         </div>
 
@@ -140,7 +145,7 @@
         </div>
 
         <div class="text-center mt-12">
-            <a href="{{ route('landing.features') }}" class="text-blue-600 font-semibold hover:text-blue-700 inline-flex items-center">
+            <a href="<?php echo e(route('landing.features')); ?>" class="text-blue-600 font-semibold hover:text-blue-700 inline-flex items-center">
                 Lihat Semua Fitur
                 <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -151,7 +156,7 @@
 </section>
 
 <!-- Testimonials -->
-@if($testimonials->count() > 0)
+<?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($testimonials->count() > 0): ?>
 <section class="py-20 bg-gray-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-16">
@@ -164,35 +169,36 @@
         </div>
 
         <div class="grid md:grid-cols-3 gap-8">
-            @foreach($testimonials as $testimonial)
+            <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php $__currentLoopData = $testimonials; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $testimonial): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
             <div class="bg-white p-8 rounded-lg shadow-sm">
                 <div class="flex items-center mb-4">
-                    @for($i = 0; $i < 5; $i++)
-                        <svg class="w-5 h-5 {{ $i < $testimonial->rating ? 'text-yellow-400' : 'text-gray-300' }}" fill="currentColor" viewBox="0 0 20 20">
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php for($i = 0; $i < 5; $i++): ?>
+                        <svg class="w-5 h-5 <?php echo e($i < $testimonial->rating ? 'text-yellow-400' : 'text-gray-300'); ?>" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
                         </svg>
-                    @endfor
+                    <?php endfor; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                 </div>
-                <p class="text-gray-600 mb-6">{{ $testimonial->content }}</p>
+                <p class="text-gray-600 mb-6"><?php echo e($testimonial->content); ?></p>
                 <div class="flex items-center">
-                    @if($testimonial->avatar)
-                        <img src="{{ Storage::url($testimonial->avatar) }}" alt="{{ $testimonial->name }}" class="w-12 h-12 rounded-full mr-4">
-                    @else
+                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($testimonial->avatar): ?>
+                        <img src="<?php echo e(Storage::url($testimonial->avatar)); ?>" alt="<?php echo e($testimonial->name); ?>" class="w-12 h-12 rounded-full mr-4">
+                    <?php else: ?>
                         <div class="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center mr-4 font-semibold">
-                            {{ substr($testimonial->name, 0, 1) }}
+                            <?php echo e(substr($testimonial->name, 0, 1)); ?>
+
                         </div>
-                    @endif
+                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
                     <div>
-                        <div class="font-semibold text-gray-900">{{ $testimonial->name }}</div>
-                        <div class="text-sm text-gray-600">{{ $testimonial->position }} - {{ $testimonial->koperasi }}</div>
+                        <div class="font-semibold text-gray-900"><?php echo e($testimonial->name); ?></div>
+                        <div class="text-sm text-gray-600"><?php echo e($testimonial->position); ?> - <?php echo e($testimonial->koperasi); ?></div>
                     </div>
                 </div>
             </div>
-            @endforeach
+            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
         </div>
     </div>
 </section>
-@endif
+<?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
 <!-- CTA Section -->
 <section class="py-20 bg-blue-600 text-white">
@@ -204,13 +210,14 @@
             Bergabunglah dengan ratusan koperasi yang telah merasakan kemudahan mengelola koperasi secara digital
         </p>
         <div class="flex flex-wrap justify-center gap-4">
-            <a href="{{ route('landing.register') }}" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
+            <a href="<?php echo e(route('landing.register')); ?>" class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition">
                 Daftar Gratis Sekarang
             </a>
-            <a href="{{ route('landing.contact') }}" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition">
+            <a href="<?php echo e(route('landing.contact')); ?>" class="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition">
                 Hubungi Kami
             </a>
         </div>
     </div>
 </section>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('landing.layouts.app', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH D:\SEMESTER 6\PRJCT-MAGANG\KoperasiMerahPutih\resources\views/landing/index.blade.php ENDPATH**/ ?>

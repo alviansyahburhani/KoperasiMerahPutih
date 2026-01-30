@@ -22,8 +22,11 @@ class LandingPage extends Model
         'stat_transaksi',
         'contact_email',
         'contact_phone',
-        'contact_address',
-        'contact_maps',
+        'contact_phone_2',      // NEW ✅
+        'contact_whatsapp',     // NEW ✅
+        'contact_address',      
+        'contact_maps',         
+        'office_hours',         // NEW ✅
         'social_facebook',
         'social_instagram',
         'social_twitter',
