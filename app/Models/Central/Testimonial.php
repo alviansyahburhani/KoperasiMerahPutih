@@ -11,8 +11,8 @@ class Testimonial extends Model
         'position',
         'koperasi',
         'content',
-        'avatar',
         'rating',
+        'avatar',
         'is_active',
         'order',
     ];
@@ -20,10 +20,11 @@ class Testimonial extends Model
     protected $casts = [
         'is_active' => 'boolean',
         'rating' => 'integer',
+        'order' => 'integer',
     ];
 
     public function scopeActive($query)
     {
-        return $query->where('is_active', true)->orderBy('order');
+        return $query->where('is_active', true);
     }
 }
